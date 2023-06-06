@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "lib.h"
-// #include "findBook.h"
+
+
+void removeBook(FILE* library, char* title)
+{
+}
 
 
 int main(int argc, char* argv[])
@@ -25,6 +29,11 @@ int main(int argc, char* argv[])
         ptr = fopen("books.txt", "r+");
     }
 
+    // Lowercase the search query
+    argv = strToLowerCase(argc, argv)
+
     // Concatenate the command line args to 1 string
-    argvToOneString(argc, argv);
+    char* title = argvToOneString(argc, argv);
+
+    removeBook(ptr, title)
 }
