@@ -19,10 +19,7 @@ void removeBook(FILE* library, char* title)
             continue;
         }
         // Lowercase the database entry
-        for (int i = 0; i < strlen(currentTitle); i++)
-        {
-            lowerCurrentTitle[i] = tolower(currentTitle[i]);
-        }
+        strcpy(lowerCurrentTitle, strToLowerCase(currentTitle));
         // Need the -1 to exclude the newline and get 0 from strncmp
         if (strncmp(title, lowerCurrentTitle, strlen(title) - 1) == 0)
         {

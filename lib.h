@@ -12,5 +12,4 @@ char* strToLowerCase(char phrase[]);
 
 char* argvToOneString(int argc, char* argv[]);
 
-char* findBook(FILE* library, char title[]);
 #endif
