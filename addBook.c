@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 #include <unistd.h>
 #include "lib.h"
@@ -9,6 +10,7 @@
 Write the title into a file. Adds a newline at the end so each book is on an individual line.
 @param library the file to go through
 @param title the string to find
+@return true if successfully added or false if not
 */
 int addBook(FILE* library, char *title)
 {
@@ -16,6 +18,9 @@ int addBook(FILE* library, char *title)
 }
 
 
+/*
+@return 0 on success, 1 if no command line arguments are provided, 2 if there was an error adding to the file
+*/
 int main(int argc, char* argv[])
 {
     if (!thereAreCommandLineArgs(argc))
@@ -37,7 +42,7 @@ int main(int argc, char* argv[])
         {
             fclose(ptr);
         }
-        return 1;
+        return 2;
     }
     else
     {

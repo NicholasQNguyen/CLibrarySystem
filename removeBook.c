@@ -7,7 +7,7 @@
 /*
 Parses through a file and returns the line number that the title appears in.
 @param library the file to go through
-@param title the string to find
+@param title the string to find. Expects to be lowercase
 @return The line number of the title or -1 if it is not found.
 */
 int findLineNumber(FILE* library, char* title)

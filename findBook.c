@@ -6,6 +6,12 @@
 #include "lib.h"
 
 
+/*
+Parses through a file and returns the name of the book that we're looking for.
+@param library the file to go through
+@param title the string to find. Expects to be lowercase
+@returns the title of the book found
+*/
 char* findBook(FILE *library, char title[])
 {
     char currentTitle[2048];
