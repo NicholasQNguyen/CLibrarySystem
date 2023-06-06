@@ -29,14 +29,11 @@ char* argvToOneString(int argc, char* argv[])
 }
 
 
-char** strToLowerCase(int numberOfWords, char* phrase[])
+char* strToLowerCase(char phrase[])
 {
-    for (int i = 1; i < numberOfWords; i++)
+    for (int i = 0; i < strlen(phrase); i++)
     {
-        for (int j = 0; j < strlen(phrase[i]); j++)
-        {
-            phrase[i][j] = tolower(phrase[i][j]);
-        }
+        phrase[i] = tolower(phrase[i]);
     }
     return phrase;
 }

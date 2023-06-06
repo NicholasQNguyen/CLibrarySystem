@@ -27,11 +27,10 @@ int main(int argc, char* argv[])
         ptr = fopen("books.txt", "r");
     }
 
-    // Convert the input into lowercase for searching
-    argv = strToLowerCase(argc, argv);
-
     // Concatenate the command line args to 1 string
     char* title = argvToOneString(argc, argv);
+    // Convert the title into lowercase for searching
+    title = strToLowerCase(title);
 
     char* book = findBook(ptr, title);
 

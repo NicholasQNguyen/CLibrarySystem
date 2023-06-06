@@ -8,7 +8,7 @@
 
 bool thereAreCommandLineArgs(int argc);
 
-char** strToLowerCase(int numberOfWords, char* phrase[]);
+char* strToLowerCase(char phrase[]);
 
 char* argvToOneString(int argc, char* argv[]);
 
