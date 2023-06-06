@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "lib.c"
+#include "findBook.c"
 
 
 int main(int argc, char* argv[])
@@ -22,4 +23,7 @@ int main(int argc, char* argv[])
     {
         ptr = fopen("books.txt", "r+");
     }
+
+    // Concatenate the command line args to 1 string
+    argvToOneString(argc, argv);
 }

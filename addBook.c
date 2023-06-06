@@ -24,15 +24,7 @@ int main(int argc, char* argv[])
     // Create "books.txt" if it doesn't exist elsewise append to it
     ptr = (access("books.txt", F_OK) != 0) ? fopen("books.txt", "w") : fopen("books.txt", "a");
     // Concatenate the command line args to 1 string
-    int v = 0;
-    char *title = (char *)malloc(v);
-    for (int i = 1; i < argc; i++)
-    {
-        v += strlen(argv[i]) + 1;
-        title = (char *)realloc(title, v);
-        strcat(title, argv[i]);
-        strcat(title, " ");
-    }
+    char* title = argvToOneString(argc, argv);
 
     addBook(ptr, title);
 

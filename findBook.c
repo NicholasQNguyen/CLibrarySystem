@@ -13,7 +13,8 @@ char* findBook(FILE *library, char title[])
     while(fgets(currentTitle, 2048, library) != NULL)
     {
         // Slight optimization
-        if (strlen(title) != strlen(currentTitle))
+        // Subtract 1 for the newline character
+        if (strlen(title) != strlen(currentTitle) - 1)
         {
             continue;
         }
@@ -65,20 +66,13 @@ int main(int argc, char* argv[])
     }
 
     // Concatenate the command line args to 1 string
-    int v = 0;
-    char *title = (char *)malloc(v);
-    for (int i = 1; i < argc; i++)
-    {
-        v += strlen(argv[i]) + 1;
-        title = (char *)realloc(title, v);
-        strcat(title, argv[i]);
-        strcat(title, " ");
-    }
+    char* title = argvToOneString(argc, argv);
+    printf("TITLE: %s \n", title);
 
     char* book = findBook(ptr, title);
 
     // Replace the newline from the file to a null terminator
-    book[strcspn(book, "\n")] = '\0';
+    // book[strcspn(book, "\n")] = '\0';
     (book) ? printf("%s is available! \n", book) : printf("Not found. \n");
 
     // Close the file
