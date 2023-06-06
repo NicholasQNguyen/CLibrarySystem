@@ -72,6 +72,7 @@ int main(int argc, char* argv[])
         strcat(title, " ");
     }
     char* book = findBook(ptr, title);
+    book[strcspn(book, "\n")] = '\0';
     (book) ? printf("%s is available! \n", book) : printf("Not found. \n");
     if (ptr)
     {
