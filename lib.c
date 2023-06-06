@@ -29,6 +29,19 @@ char* argvToOneString(int argc, char* argv[])
 }
 
 
+char** strToLowerCase(int numberOfWords, char* phrase[])
+{
+    for (int i = 1; i < numberOfWords; i++)
+    {
+        for (int j = 0; j < strlen(phrase[i]); j++)
+        {
+            phrase[i][j] = tolower(phrase[i][j]);
+        }
+    }
+    return phrase;
+}
+
+
 char* findBook(FILE *library, char title[])
 {
     char currentTitle[2048];

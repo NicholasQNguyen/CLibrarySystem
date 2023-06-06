@@ -8,6 +8,8 @@
 
 bool thereAreCommandLineArgs(int argc);
 
+char** strToLowerCase(int numberOfWords, char* phrase[]);
+
 char* argvToOneString(int argc, char* argv[]);
 
 char* findBook(FILE* library, char title[]);

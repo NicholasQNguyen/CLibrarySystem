@@ -28,17 +28,10 @@ int main(int argc, char* argv[])
     }
 
     // Convert the input into lowercase for searching
-    for (int i = 1; i < argc; i++)
-    {
-        for (int j = 0; j < strlen(argv[i]); j++)
-        {
-            argv[i][j] = tolower(argv[i][j]);
-        }
-    }
+    argv = strToLowerCase(argc, argv);
 
     // Concatenate the command line args to 1 string
     char* title = argvToOneString(argc, argv);
-    printf("TITLE: %s \n", title);
 
     char* book = findBook(ptr, title);
 
