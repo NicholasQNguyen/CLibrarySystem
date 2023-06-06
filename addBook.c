@@ -11,6 +11,7 @@ void addBook(FILE *library, char *title)
     fprintf(library, "%s\n", title);
 }
 
+
 int main(int argc, char* argv[])
 {
     if (!thereAreCommandLineArgs(argc))

@@ -33,6 +33,7 @@ char* findBook(FILE *library, char title[])
     return NULL;
 }
 
+
 int main(int argc, char* argv[])
 {
     if (!thereAreCommandLineArgs(argc))
@@ -62,6 +63,7 @@ int main(int argc, char* argv[])
             argv[i][j] = tolower(argv[i][j]);
         }
     }
+
     // Concatenate the command line args to 1 string
     int v = 0;
     char *title = (char *)malloc(v);
