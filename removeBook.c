@@ -3,12 +3,12 @@
 #include <ctype.h>
 #include "lib.h"
 
-
-void removeBook(FILE* library, char* title)
+int findLineNumber(FILE* library, char* title)
 {
     char currentTitle[2048];
     char lowerCurrentTitle[2048];
     int currentLine = 0;
+    // Find the line number of the 
     while(fgets(currentTitle, 2048, library) != NULL)
     {
         // Slight optimization
@@ -23,7 +23,19 @@ void removeBook(FILE* library, char* title)
         // Need the -1 to exclude the newline and get 0 from strncmp
         if (strncmp(title, lowerCurrentTitle, strlen(title) - 1) == 0)
         {
+            return currentLine;
         }
+    }
+    return -1;
+}
+
+
+void removeBook(FILE* library, char* title)
+{
+    int lineNumber = findLineNumber(library, title);
+    if (lineNumber == -1)
+    {
+        return;
     }
 }
 

@@ -6,6 +6,7 @@ all:
 	make addBook
 	make findBook
 	make removeBook
+	make oClean
 
 addBook: addBook.o lib.o
 	$(CC) -o addBook addBook.o $(DEPS) $(FLAGS)
@@ -20,4 +21,6 @@ clean:
 	rm addBook
 	rm findBook
 	rm removeBook
+
+oClean:
 	rm *.o
