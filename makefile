@@ -1,11 +1,17 @@
 CC = gcc
-DEPS = lib.c
+FLAGS = -Wall -Werror
+DEPS = lib.o
 
-addBook:
-	$(CC) -o addBook addBook.c $(DEPS) -Wall
+all:
+	make addBook
+	make findBook
+	make removeBook
 
-findBook:
-	$(CC) -o findBook findBook.c $(DEPS) -Wall
+addBook: addBook.o lib.o
+	$(CC) -o addBook addBook.o $(DEPS) $(FLAGS)
 
-removeBook:
-	$(CC) -o removeBook removeBook.c findBook.c $(DEPS) -Wall
+findBook: findBook.o lib.o
+	$(CC) -o findBook findBook.o $(DEPS) $(FLAGS)
+
+removeBook: removeBook.o lib.o
+	$(CC) -o removeBook removeBook.o $(DEPS) $(FLAGS)
