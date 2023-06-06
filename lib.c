@@ -37,5 +37,3 @@ char* strToLowerCase(char phrase[])
     }
     return phrase;
 }
-
-

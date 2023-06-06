@@ -3,6 +3,13 @@
 #include <ctype.h>
 #include "lib.h"
 
+
+/*
+Parses through a file and returns the line number that the title appears in.
+@param library the file to go through
+@param title the string to find
+@return The line number of the title or -1 if it is not found.
+*/
 int findLineNumber(FILE* library, char* title)
 {
     char currentTitle[2048];
@@ -30,12 +37,18 @@ int findLineNumber(FILE* library, char* title)
 }
 
 
-void removeBook(FILE* library, char* title)
+/*
+Parses through a file and removes the line where the title appears.
+@param library the file to go through
+@param title the string to find
+@return 0 on a successful removal or 1 if it is not found
+*/
+int removeBook(FILE* library, char* title)
 {
     int lineNumber = findLineNumber(library, title);
     if (lineNumber == -1)
     {
-        return;
+        return 1;
     }
 }
 
@@ -66,5 +79,18 @@ int main(int argc, char* argv[])
     // Lowercase the search query
     title = strToLowerCase(title);
 
-    removeBook(ptr, title);
+    if (removeBook(ptr, title));
+    {
+        printf("Title not found in library.");
+        if (ptr)
+        {
+            fclose(ptr);
+        }
+        return 1;
+    }
+
+    if (ptr)
+    {
+        fclose(ptr);
+    }
 }
