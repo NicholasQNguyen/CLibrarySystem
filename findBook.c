@@ -72,7 +72,7 @@ int main(int argc, char* argv[])
     char* book = findBook(ptr, title);
 
     // Replace the newline from the file to a null terminator
-    // book[strcspn(book, "\n")] = '\0';
+    book[strcspn(book, "\n")] = '\0';
     (book) ? printf("%s is available! \n", book) : printf("Not found. \n");
 
     // Close the file
