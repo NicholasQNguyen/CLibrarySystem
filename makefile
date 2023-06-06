@@ -15,3 +15,9 @@ findBook: findBook.o lib.o
 
 removeBook: removeBook.o lib.o
 	$(CC) -o removeBook removeBook.o $(DEPS) $(FLAGS)
+
+clean:
+	rm addBook
+	rm findBook
+	rm removeBook
+	rm *.o
