@@ -35,7 +35,7 @@ char* findBook(FILE *library, char title[])
 
 int main(int argc, char* argv[])
 {
-    if (!checkForCommandLineArgs(argc))
+    if (!thereAreCommandLineArgs(argc))
     {
         printf("Command line arguments expected. \n");
         printf("format: \"./findBook <TITLE OF BOOK>\". \n");
@@ -72,14 +72,18 @@ int main(int argc, char* argv[])
         strcat(title, argv[i]);
         strcat(title, " ");
     }
+
     char* book = findBook(ptr, title);
+
     // Replace the newline from the file to a null terminator
     book[strcspn(book, "\n")] = '\0';
     (book) ? printf("%s is available! \n", book) : printf("Not found. \n");
+
     // Close the file
     if (ptr)
     {
         fclose(ptr);
     }
+
     return 0;
 }

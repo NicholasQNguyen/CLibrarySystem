@@ -1,47 +1,44 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 #include <unistd.h>
 #include "lib.c"
 
 
-void addBook(FILE *library, int wordsInTitle, char* title[])
+void addBook(FILE *library, char *title)
 {
-    // Loop in case book title has spaces
-    for (int i = 1; i < wordsInTitle; i++)
-    {
-        // Ensure that we don't have a space at the end
-        (i != wordsInTitle - 1) ? fprintf(library, "%s ", title[i]) : fprintf(library, "%s", title[i]);
-        /*
-        if (i != wordsInTitle - 1)
-        {
-            fprintf(library, "%s ", title[i]);
-        }
-        else
-        {
-            fprintf(library, "%s", title[i]);
-        }
-        */
-    }
-    // Add a line between each entry
-    fprintf(library, "\n");
+    fprintf(library, "%s\n", title);
 }
 
 int main(int argc, char* argv[])
 {
-    if (!checkForCommandLineArgs(argc))
+    if (!thereAreCommandLineArgs(argc))
     {
         printf("Command line arguments expected. \n");
-        printf("format: \"./main <TITLE OF BOOK>\". \n");
+        printf("format: \"./addBook <TITLE OF BOOK>\". \n");
         return 1;
     }
-
     FILE *ptr;
     // Create "books.txt" if it doesn't exist elsewise append to it
     ptr = (access("books.txt", F_OK) != 0) ? fopen("books.txt", "w") : fopen("books.txt", "a");
-    addBook(ptr, argc, argv);
+    // Concatenate the command line args to 1 string
+    int v = 0;
+    char *title = (char *)malloc(v);
+    for (int i = 1; i < argc; i++)
+    {
+        v += strlen(argv[i]) + 1;
+        title = (char *)realloc(title, v);
+        strcat(title, argv[i]);
+        strcat(title, " ");
+    }
+
+    addBook(ptr, title);
+
     if (ptr)
     {
         fclose(ptr);
     }
+
     return 0;
 }

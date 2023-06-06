@@ -1,6 +1,4 @@
-#include <stdbool.h>
-
-bool checkForCommandLineArgs(int argc)
+bool thereAreCommandLineArgs(int argc)
 {
     return (argc != 1);
 }
