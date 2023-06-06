@@ -50,6 +50,7 @@ int removeBook(FILE* library, char* title)
     {
         return 1;
     }
+    return 0;
 }
 
 
@@ -79,18 +80,21 @@ int main(int argc, char* argv[])
     // Lowercase the search query
     title = strToLowerCase(title);
 
-    if (removeBook(ptr, title));
+    int result = removeBook(ptr, title);
+
+    if (result != 0)
     {
-        printf("Title not found in library.");
+        printf("Title not found in library. \n");
         if (ptr)
         {
             fclose(ptr);
         }
         return 1;
     }
-
     if (ptr)
     {
         fclose(ptr);
     }
+
+    return 0;
 }
