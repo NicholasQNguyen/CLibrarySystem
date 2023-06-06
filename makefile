@@ -1,8 +1,11 @@
+CC = gcc
+DEPS = lib.c
+
 addBook:
-	gcc -o addBook addBook.c -Wall
+	$(CC) -o addBook addBook.c $(DEPS) -Wall
 
 findBook:
-	gcc -o findBook findBook.c -Wall
+	$(CC) -o findBook findBook.c $(DEPS) -Wall
 
 removeBook:
-	gcc -o removeBook removeBook.c -Wall
+	$(CC) -o removeBook removeBook.c findBook.c $(DEPS) -Wall

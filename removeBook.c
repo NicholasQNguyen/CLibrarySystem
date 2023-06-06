@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include "lib.c"
-#include "findBook.c"
+#include <unistd.h>
+#include "lib.h"
+#include "findBook.h"
 
 
 int main(int argc, char* argv[])

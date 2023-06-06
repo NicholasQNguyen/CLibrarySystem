@@ -3,7 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <unistd.h>
-#include "lib.c"
+#include "lib.h"
 
 
 char* findBook(FILE *library, char title[])

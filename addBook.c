@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <unistd.h>
-#include "lib.c"
+#include "lib.h"
 
 
 void addBook(FILE *library, char *title)
