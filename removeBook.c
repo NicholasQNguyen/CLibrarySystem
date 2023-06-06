@@ -50,6 +50,46 @@ int removeBook(FILE* library, char* title)
     {
         return 1;
     }
+    char currentTitle[2048];
+    char lowerCurrentTitle[2048];
+    int currentLine = 0;
+    // Create a temporary file
+    FILE* tempFile = fopen("temp.txt", "w");
+    // Copy each line from the original library to a second file
+    while(fgets(currentTitle, 2048, library) != NULL)
+    {
+        printf("LINE NUMBER: %d \n", lineNumber);
+        printf("CURRENT LINE: %d \n", currentLine);
+        // Skip over the entry we're trying to delet
+        if (currentLine == lineNumber)
+        {
+            continue;
+        }
+        fprintf(tempFile, "%s", currentTitle) > 0;
+        currentLine++;
+    }
+    // Delete the original file
+    // If statement for error checking
+    if (remove("books.txt") != 0)
+    {
+        if (tempFile)
+        {
+            fclose(tempFile);
+        }
+        return 2;
+    }
+    if (rename("temp.txt", "books.txt") != 0)
+    {
+        if (tempFile)
+        {
+            fclose(tempFile);
+        }
+        return 3;
+    }
+    if (tempFile)
+    {
+        fclose(tempFile);
+    }
     return 0;
 }
 
@@ -63,7 +103,7 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    FILE *ptr;
+    FILE* ptr;
     if (access("books.txt", F_OK) != 0)
     {
         printf("No library found \n");
@@ -82,7 +122,8 @@ int main(int argc, char* argv[])
 
     int result = removeBook(ptr, title);
 
-    if (result != 0)
+    // Error handling
+    if (result == 1)
     {
         printf("Title not found in library. \n");
         if (ptr)
@@ -91,6 +132,26 @@ int main(int argc, char* argv[])
         }
         return 1;
     }
+    if (result == 2)
+    {
+        printf("ERROR: Problem in deleting original library file. \n");
+        if (ptr)
+        {
+            fclose(ptr);
+        }
+        return 1;
+    }
+    if (result == 3)
+    {
+        printf("ERROR: Problem in renaming temp.txt to book.txt. \n");
+        if (ptr)
+        {
+            fclose(ptr);
+        }
+        return 1;
+    }
+
+    // Close the original file
     if (ptr)
     {
         fclose(ptr);
