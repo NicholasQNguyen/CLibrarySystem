@@ -12,4 +12,6 @@ char* strToLowerCase(char phrase[]);
 
 char* argvToOneString(int argc, char* argv[]);
 
+char* newlineRemove(char phrase[]);
+
 #endif
