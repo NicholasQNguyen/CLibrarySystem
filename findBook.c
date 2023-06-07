@@ -65,22 +65,19 @@ int main(int argc, char* argv[])
     // Concatenate the command line args to 1 string
     char* title = argvToOneString(argc, argv);
     // Convert the title into lowercase for searching
-    title = strToLowerCase(title);
+    char* lowerCaseTitle = strToLowerCase(title);
 
-    char* book = findBook(ptr, title);
+    char* book = findBook(ptr, lowerCaseTitle);
 
-    // Replace the newline from the file to a null terminator
-    // book[strcspn(book, "\n")] = '\0';
-    for (int i = 0; i < strlen(book); i++)
+    if (book)
     {
-        printf("%c \n", book[i]);
+        char* newlineLessBook = newlineRemove(book);
+        printf("%s is available! \n", newlineLessBook);
     }
-    char* newlineLessBook = newlineRemove(book);
-    for (int i = 0; i < strlen(book); i++)
+    else
     {
-        printf("%c \n", newlineLessBook[i]);
+        printf("%s not found. \n", title);
     }
-    (book) ? printf("%s is available! \n", newlineLessBook) : printf("%s not found. \n", newlineLessBook);
 
     // Close the file
     if (ptr)
