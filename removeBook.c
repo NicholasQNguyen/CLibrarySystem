@@ -5,39 +5,6 @@
 
 
 /*
-Parses through a file and returns the line number that the title appears in.
-@param library the file to go through
-@param title the string to find. Expects to be lowercase
-@return The line number of the title or -1 if it is not found.
-*/
-int findLineNumber(FILE* library, char* title)
-{
-    char currentTitle[2048];
-    char lowerCurrentTitle[2048];
-    int currentLine = 0;
-    // Find the line number of the 
-    while(fgets(currentTitle, 2048, library) != NULL)
-    {
-        // Slight optimization
-        // Subtract 1 for the newline character
-        if (strlen(title) != strlen(currentTitle) - 1)
-        {
-            currentLine++;
-            continue;
-        }
-        // Lowercase the database entry
-        strcpy(lowerCurrentTitle, strToLowerCase(currentTitle));
-        // Need the -1 to exclude the newline and get 0 from strncmp
-        if (strncmp(title, lowerCurrentTitle, strlen(title) - 1) == 0)
-        {
-            return currentLine;
-        }
-    }
-    return -1;
-}
-
-
-/*
 Parses through a file and removes the line where the title appears.
 @param library the file to go through
 @param title the string to find
@@ -45,28 +12,28 @@ Parses through a file and removes the line where the title appears.
 */
 int removeBook(FILE* library, char* title)
 {
-    int lineNumber = findLineNumber(library, title);
-    if (lineNumber == -1)
-    {
-        return 1;
-    }
     char currentTitle[2048];
     char lowerCurrentTitle[2048];
-    int currentLine = 0;
     // Create a temporary file
     FILE* tempFile = fopen("temp.txt", "w");
     // Copy each line from the original library to a second file
     while(fgets(currentTitle, 2048, library) != NULL)
     {
-        printf("LINE NUMBER: %d \n", lineNumber);
-        printf("CURRENT LINE: %d \n", currentLine);
-        // Skip over the entry we're trying to delet
-        if (currentLine == lineNumber)
+        // Slight optimization
+        // Subtract 1 for the newline character
+        if (strlen(title) != strlen(currentTitle) - 1)
+        {
+            fprintf(tempFile, "%s", currentTitle);
+            continue;
+        }
+        // Lowercase the database entry
+        strcpy(lowerCurrentTitle, strToLowerCase(currentTitle));
+        // Need the -1 to exclude the newline and get 0 from strncmp
+        if (strncmp(title, lowerCurrentTitle, strlen(title) - 1) == 0)
         {
             continue;
         }
-        fprintf(tempFile, "%s", currentTitle) > 0;
-        currentLine++;
+        fprintf(tempFile, "%s", currentTitle);
     }
     // Delete the original file
     // If statement for error checking

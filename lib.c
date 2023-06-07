@@ -31,9 +31,12 @@ char* argvToOneString(int argc, char* argv[])
 
 char* strToLowerCase(char phrase[])
 {
+    char* returnedString = (char*)malloc((strlen(phrase) + 1) * sizeof(char));
     for (int i = 0; i < strlen(phrase); i++)
     {
-        phrase[i] = tolower(phrase[i]);
+        // phrase[i] = tolower(phrase[i]);
+        returnedString[i] = tolower(phrase[i]);
     }
-    return phrase;
+    // return phrase;
+    return returnedString;
 }
