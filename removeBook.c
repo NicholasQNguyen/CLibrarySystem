@@ -85,9 +85,9 @@ int main(int argc, char* argv[])
     // Concatenate the command line args to 1 string
     char* title = argvToOneString(argc, argv);
     // Lowercase the search query
-    title = strToLowerCase(title);
+    char* lowerCaseTitle = strToLowerCase(title);
 
-    int result = removeBook(ptr, title);
+    int result = removeBook(ptr, lowerCaseTitle);
 
     // Error handling
     if (result == 1)
@@ -124,5 +124,6 @@ int main(int argc, char* argv[])
         fclose(ptr);
     }
 
+    printf("Successfully removed %s! \n", title);
     return 0;
 }

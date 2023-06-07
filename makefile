@@ -7,7 +7,6 @@ all:
 	make findBook
 	make removeBook
 	make oClean
-	cp stable.txt books.txt
 
 addBook: addBook.o lib.o
 	$(CC) -o addBook addBook.o $(DEPS) $(FLAGS)
