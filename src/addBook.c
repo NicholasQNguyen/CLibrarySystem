@@ -12,7 +12,7 @@ Write the title into a file. Adds a newline at the end so each book is on an ind
 @param title the string to find
 @return true if successfully added or false if not
 */
-int addBook(FILE* library, char *title)
+int addBook(FILE* library, char* title)
 {
     return fprintf(library, "%s\n", title) > 0;
 }

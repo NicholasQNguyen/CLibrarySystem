@@ -39,6 +39,7 @@ char* strToLowerCase(char phrase[])
     return returnedString;
 }
 
+
 char* newlineRemove(char phrase[])
 {
     int len = strlen(phrase);
