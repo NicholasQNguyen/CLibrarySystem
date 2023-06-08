@@ -6,7 +6,7 @@
 
 bool thereAreCommandLineArgs(int argc)
 {
-    return (argc != 1);
+    return (argc > 1);
 }
 
 
@@ -34,10 +34,8 @@ char* strToLowerCase(char phrase[])
     char* returnedString = (char*)malloc((strlen(phrase) + 1) * sizeof(char));
     for (int i = 0; i < strlen(phrase); i++)
     {
-        // phrase[i] = tolower(phrase[i]);
         returnedString[i] = tolower(phrase[i]);
     }
-    // return phrase;
     return returnedString;
 }
 

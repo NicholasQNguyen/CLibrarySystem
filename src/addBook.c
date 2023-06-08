@@ -19,15 +19,26 @@ int addBook(FILE* library, char *title)
 
 
 /*
-@return 0 on success, 1 if no command line arguments are provided, 2 if there was an error adding to the file
+@return 0 on successful execution
+        1 if no command line arguments are provided
+        2 if there was an error adding to the file
 */
 int main(int argc, char* argv[])
 {
     if (!thereAreCommandLineArgs(argc))
     {
         printf("Command line arguments expected. \n");
-        printf("format: \"./addBook <TITLE OF BOOK>\". \n");
+        printf("Use the -h flag for help. \n");
+        printf("\"./addbook -h\"");
         return 1;
+    }
+    if (argc == 2 && strncmp("-h", argv[1], strlen(argv[1])) == 0)
+    {
+        printf("This program adds books to the books.txt file. \n");
+        printf("Books are entered exactly as they are spelled. \n");
+        printf("After entering \"./addbook\", books titles may be entered naturally with spaces. \n");
+        printf("format: \"./addBook <TITLE OF BOOK>\". \n");
+        return 0;
     }
     FILE *ptr;
     // Create "books.txt" if it doesn't exist elsewise append to it

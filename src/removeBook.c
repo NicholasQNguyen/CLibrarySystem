@@ -61,13 +61,30 @@ int removeBook(FILE* library, char* title)
 }
 
 
+/*
+@return 0 on successful execution
+        1 if no command line arguments are provided
+        2 if a library is not found 
+        3 if the title is not found in the library
+        4 if there was an error deleting the original library file
+        5 if there was an error renaming the temporary file
+*/
 int main(int argc, char* argv[])
 {
     if (!thereAreCommandLineArgs(argc))
     {
         printf("Command line arguments expected. \n");
-        printf("format: \"./removeBook <TITLE OF BOOK>\". \n");
+        printf("Use the -h flag for help. \n");
+        printf("\"./removebook -h\"");
         return 1;
+    }
+    if (argc == 2 && strncmp("-h", argv[1], strlen(argv[1])) == 0)
+    {
+        printf("This program removes books from the books.txt file. \n");
+        printf("Books must be spelled exactly as they appear in the database, but they are not case sensitive. \n");
+        printf("After entering \"./removeBook\", books titles may be entered naturally with spaces. \n");
+        printf("Format: \"./removeBook <TITLE OF BOOK>\". \n");
+        return 0;
     }
 
     FILE* ptr;
@@ -75,7 +92,7 @@ int main(int argc, char* argv[])
     {
         printf("No library found \n");
         printf("Add a book using addBook.\n");
-        return 1;
+        return 2;
     }
     else
     {
@@ -97,7 +114,7 @@ int main(int argc, char* argv[])
         {
             fclose(ptr);
         }
-        return 1;
+        return 3;
     }
     if (result == 2)
     {
@@ -106,7 +123,7 @@ int main(int argc, char* argv[])
         {
             fclose(ptr);
         }
-        return 1;
+        return 4;
     }
     if (result == 3)
     {
@@ -115,7 +132,7 @@ int main(int argc, char* argv[])
         {
             fclose(ptr);
         }
-        return 1;
+        return 5;
     }
 
     // Close the original file

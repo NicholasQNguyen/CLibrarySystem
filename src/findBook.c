@@ -41,13 +41,28 @@ char* findBook(FILE *library, char title[])
 }
 
 
+/*
+@return 0 on successful execution
+        1 if no command line arguments are provided
+        2 if a library is not found 
+*/
 int main(int argc, char* argv[])
 {
     if (!thereAreCommandLineArgs(argc))
     {
         printf("Command line arguments expected. \n");
-        printf("format: \"./findBook <TITLE OF BOOK>\". \n");
+        printf("Use the -h flag for help. \n");
+        printf("\"./findbook -h\"");
         return 1;
+    }
+
+    if (argc == 2 && strncmp("-h", argv[1], strlen(argv[1])) == 0)
+    {
+        printf("This program finds and prints if titles in in the books.txt file. \n");
+        printf("Books must be spelled exactly as they appear in the database, but they are not case sensitive. \n");
+        printf("After entering \"./findBook\", books titles may be entered naturally with spaces. \n");
+        printf("format: \"./findBook <TITLE OF BOOK>\". \n");
+        return 0;
     }
 
     FILE *ptr;
@@ -55,7 +70,7 @@ int main(int argc, char* argv[])
     {
         printf("No library found \n");
         printf("Add a book using addBook.\n");
-        return 1;
+        return 2;
     }
     else
     {
